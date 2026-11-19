@@ -23,7 +23,7 @@ source_file() {
   else
     local tmp
     tmp="$(mktemp)"
-    curl -fsSL "$RAW/$rel" -o "$tmp"
+    curl -fsSL --retry 2 -m 60 "$RAW/$rel" -o "$tmp" < /dev/null
     echo "$tmp"
   fi
 }
